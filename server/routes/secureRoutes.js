@@ -2,10 +2,22 @@ const express = require('express');
 const router = express.Router();
 const Message = require('../models/messageModel');
 const User = require('../models/userModel');
+const auth = require('../auth/auth');
 
-//API Route /api/chat/users/
-//GET: Getting all responses from DB
-//POST: Creating a new response and storing it at DB
+//API Route /api/getUserLogged/
+//GET: Getting all users from DB
+router.route('/getUserLogged')
+    .get((req, res) => {
+        var id = req.user._id;
+        User.findById(id, (err, user) => {
+            res.json(user);
+            console.log("Getting the user logged");
+            res.end();
+        })
+    })
+
+//API Route /api/users/
+//GET: Getting all users from DB
 router.route('/users')
     .get((req, res) => {
         User.find({}, (err, users) => {
@@ -14,6 +26,8 @@ router.route('/users')
             res.end();
         })
     })
+
+
 
 
 

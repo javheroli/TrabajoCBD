@@ -7,6 +7,8 @@ var secureRoutes = require('./routes/secureRoutes.js');
 var bodyParser = require('body-parser');
 require('./auth/auth');
 require('dotenv').config();
+var multer = require('multer');
+var upload = multer();
 
 
 
@@ -25,11 +27,14 @@ mongoose.Promise = global.Promise;
 
 const app = express();
 
-//Defines server responses format as JSON
+//For parsing body with Content-Type application/json
 app.use(bodyParser.json());
+//For parsing body with Content-Type application/xwww-form-urlencoded
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+//For parsing multipart/form-data
+app.use(upload.array());
 
 //Allowing Cross-Origin Request
 app.use((req, res, next) => {
@@ -46,17 +51,15 @@ app.use((req, res, next) => {
   }
 });
 
-// Serve static files from the Ionic app
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 //Server path to user login routes
-app.use('/api/user', routes);
+app.use('/api', routes);
 
 //Server path to responses secured routes
-app.use('/api/chat', passport.authenticate('jwt', {
+app.use('/api', passport.authenticate('jwt', {
   session: false
 }), secureRoutes);
-
 
 
 // The 'catchall' handler: for any request that doesn't

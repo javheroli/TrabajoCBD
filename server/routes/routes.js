@@ -8,6 +8,18 @@ const cloudinaryStorage = require("multer-storage-cloudinary");
 require('dotenv').config();
 
 
+//Route  /api/turnOnServer
+//Turn on de server on heroku
+router.route('/turnOnServer')
+  .get((req, res) => {
+    res.json({
+      message: "Awake"
+    })
+    console.log("Awakening server");
+    res.end();
+
+  })
+
 //Parser to upload an image to Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -28,9 +40,9 @@ const parser = multer({
   storage: storage
 });
 
-//Route  /api/user/signup
+//Route  /api/auth/signup
 //Authenticate user based on the data sended by user previously
-router.post('/signup', parser.single("image"), async (req, res, next) => {
+router.post('/auth/signup', parser.single("image"), async (req, res, next) => {
   passport.authenticate('signup', async (err, user, info) => {
     try {
       if (err || !user) {
@@ -49,10 +61,11 @@ router.post('/signup', parser.single("image"), async (req, res, next) => {
   })(req, res, next);
 });
 
-//Route /api/user/login
+//Route /api/auth/login
 //Creation of login token for user
-router.post('/login', async (req, res, next) => {
+router.post('/auth/login', async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
+
     try {
       if (err || !user) {
         return next(res.status(500).send(

@@ -1,0 +1,52 @@
+{
+  "CHAT": {
+    "ME": "Yo",
+    "TYPE_A_MESSAGE": "Escribe un mensaje..."
+  },
+  "CONFIG": "Configuración",
+
+
+  "LOGIN": {
+    "FAIL": "Las credenciales introducidas no fueron correctas. Por favor, intentelo de nuevo.",
+    "NEW_HERE": "¿Nuevo aquí?",
+    "PASSWORD": "Contraseña",
+    "REQUIRED_FIELD": "Campo obligatorio",
+    "SIGNIN": "Inicia sesión",
+    "SIGN_UP": "Regístrese",
+    "USERNAME": "Usuario",
+    "WAIT": "Por favor, espere...",
+    "CHAT": "Etsii Chat"
+  },
+  "MENU": {
+    "APP_SETTINGS": "Ajustes",
+    "CONTACTS": "Contactos",
+    "LOGOUT": "Cerrar sesión",
+    "MENU": "Menú"
+  },
+  "REGISTER": {
+    "CONFIRM_PASSWORD": "Confirmar contraseña",
+    "PROFILE_PIC": "Imagen de perfil",
+    "ERROR_USERNAME": "El nombre de usuario ya está cogido",
+    "FIRST_NAME": "Nombre",
+    "HEADER_SUCCESS": "Éxito",
+    "INTRUDUCE_INFORMATION": "Introduce tus datos personales",
+    "I_HAVE_AN_ACCOUNT": "¡Ya tengo una cuenta!",
+    "LAST_NAME": "Apellidos",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_VALIDATION_FALSE": "¡Las contraseñas no coinciden!",
+    "REGISTER": "Registro",
+    "REQUIRED_FIELD": "Campo obligatorio",
+    "SIGN_UP": "Registro",
+    "SUCCESS": "¡Registro realizado correctamente!",
+    "THIS_FIELD_IS_REQUIRED": "Este campo es obligatorio",
+    "USERNAME": "Usuario"
+  },
+
+  "SETTINGS": {
+    "APP_LANGUAGE": "Idioma",
+    "APP_SETTINGS": "Ajustes",
+    "GENERAL": "General",
+    "LOGOUT": "Cerrar sesión",
+    "PROFILE": "Perfil"
+  }
+}
