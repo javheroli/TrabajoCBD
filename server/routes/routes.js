@@ -5,13 +5,23 @@ const jwt = require('jsonwebtoken');
 
 //Route  /api/user/signup
 //Authenticate user based on the data sended by user previously
-router.post('/signup', passport.authenticate('signup', {
-  session: false
-}), async (req, res, next) => {
-  res.json({
-    message: 'Signup successful',
-    user: req.user
-  });
+router.post('/signup', async (req, res, next) => {
+  passport.authenticate('signup', async (err, user, info) => {
+    try {
+      if (err || !user) {
+        return next(res.status(500).send(
+          'An Error occured: ' + info['message']
+        ));
+      } else {
+        res.json({
+          message: 'Signup successful',
+          user: req.user
+        });
+      }
+    } catch (error) {
+      return next(error);
+    }
+  })(req, res, next);
 });
 
 //Route /api/user/login
@@ -20,7 +30,7 @@ router.post('/login', async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
     try {
       if (err || !user) {
-        return next(res.status(401).send(
+        return next(res.status(500).send(
           'An Error occured: ' + info['message']
         ));
       }

@@ -5,16 +5,37 @@ const UserModel = require('../models/userModel');
 //User registration middleware
 passport.use('signup', new localStrategy({
   usernameField: 'username',
-  passwordField: 'password'
-}, async (username, password, done) => {
+  passwordField: 'password',
+  passReqToCallback: true
+}, async (req, username, password, done) => {
   try {
-    //Save the information provided by the user to the DB
-    const user = await UserModel.create({
-      username,
-      password
+    //Find if the username already exists in the DB
+    const user = await UserModel.findOne({
+      username
     });
-    //Send the user information to the next middleware
-    return done(null, user);
+
+    if (!user) {
+      var firstName = req.body.firstName
+      var lastName = req.body.lastName
+      var degree = req.body.degree
+      var course = req.body.course
+      //Save the information provided by the user to the DB
+      const user = await UserModel.create({
+        username,
+        password,
+        firstName,
+        lastName,
+        degree,
+        course
+      });
+      //Send the user information to the next middleware
+      return done(null, user);
+    } else {
+      return done(null, false, {
+        message: 'Username already exists'
+      });
+    }
+
   } catch (error) {
     done(error);
   }

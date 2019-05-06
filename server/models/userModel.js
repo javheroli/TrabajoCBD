@@ -12,8 +12,23 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
-
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  degree: {
+    type: String,
+    required: true,
+  },
+  course: {
+    type: String,
+    required: true,
+  },
 });
 
 //Fuction to hash password in text plain
