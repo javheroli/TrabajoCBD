@@ -6,6 +6,8 @@ var routes = require('./routes/routes.js');
 var secureRoutes = require('./routes/secureRoutes.js');
 var bodyParser = require('body-parser');
 require('./auth/auth');
+require('dotenv').config();
+
 
 
 //Connection to DataBase:
@@ -63,9 +65,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+
 const port = process.env.PORT || 5000;
 app.listen(port);
 
 console.log(`API listening on ${port}`);
+
 
 module.exports = app;

@@ -29,6 +29,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+    default: 'https://res.cloudinary.com/trabajocbd/image/upload/v1557158683/userImages/default.png'
+  }
 });
 
 //Fuction to hash password in text plain

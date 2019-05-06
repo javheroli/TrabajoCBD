@@ -2,10 +2,35 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const multer = require("multer");
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
+require('dotenv').config();
+
+
+//Parser to upload an image to Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
+const storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "userImages",
+  allowedFormats: ["jpg", "png", "jpeg", "gif"],
+  transformation: [{
+    width: 500,
+    height: 500,
+    crop: "limit"
+  }]
+});
+const parser = multer({
+  storage: storage
+});
 
 //Route  /api/user/signup
 //Authenticate user based on the data sended by user previously
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', parser.single("image"), async (req, res, next) => {
   passport.authenticate('signup', async (err, user, info) => {
     try {
       if (err || !user) {
@@ -15,7 +40,7 @@ router.post('/signup', async (req, res, next) => {
       } else {
         res.json({
           message: 'Signup successful',
-          user: req.user
+          user: user
         });
       }
     } catch (error) {

@@ -2,6 +2,7 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const UserModel = require('../models/userModel');
 
+
 //User registration middleware
 passport.use('signup', new localStrategy({
   usernameField: 'username',
@@ -19,17 +20,35 @@ passport.use('signup', new localStrategy({
       var lastName = req.body.lastName
       var degree = req.body.degree
       var course = req.body.course
-      //Save the information provided by the user to the DB
-      const user = await UserModel.create({
-        username,
-        password,
-        firstName,
-        lastName,
-        degree,
-        course
-      });
-      //Send the user information to the next middleware
-      return done(null, user);
+      if (req.file !== undefined) {
+        image = req.file.url
+
+        //Save the information provided by the user to the DB
+        const user = await UserModel.create({
+          username,
+          password,
+          firstName,
+          lastName,
+          degree,
+          course,
+          image
+        });
+        //Send the user information to the next middleware
+        return done(null, user);
+      } else {
+        //Save the information provided by the user to the DB
+        const user = await UserModel.create({
+          username,
+          password,
+          firstName,
+          lastName,
+          degree,
+          course
+        });
+        //Send the user information to the next middleware
+        return done(null, user);
+      }
+
     } else {
       return done(null, false, {
         message: 'Username already exists'
