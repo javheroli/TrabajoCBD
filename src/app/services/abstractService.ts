@@ -80,4 +80,22 @@ export class AbstractWS {
         });
     });
   }
+
+  protected makeDeleteRequest(
+    path: string,
+    data: any,
+    token?: string
+  ): Promise<any> {
+    return this.getHeaders(token).then(headers => {
+      return this.http
+        .delete(path, { headers: headers })
+        .toPromise()
+        .then((response: HttpResponse<any>) => {
+          return Promise.resolve(response);
+        })
+        .catch(function(error) {
+          return Promise.reject(null);
+        });
+    });
+  }
 }
