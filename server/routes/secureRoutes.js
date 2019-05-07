@@ -64,6 +64,27 @@ router.route('/messages')
 
     })
 
+
+//API Route /api/deleteMessages/:messageId
+//DELETE: Delete a message from DB
+router.route('/deleteMessages/:messageId').delete((req, res) => {
+    var messageId = req.params.messageId;
+    var userId = req.user._id;
+    User.findById(userId, (error, user) => {
+        Message.findById(messageId, (err, message) => {
+            if (user.username !== message.sender) {
+                return res
+                    .status(500)
+                    .send('The user is not the sender of this message');
+            }
+            if (err) return res.status(500).send(err);
+
+            message.delete();
+            res.status(204).send('Message deleted succesfully');
+        });
+    });
+});
+
 //API Route /api/messages/:sender/:receiver
 //GET: Getting all messages between sender and receiver ordered by timestamp from DB
 router.route('/messages/:sender/:receiver')
