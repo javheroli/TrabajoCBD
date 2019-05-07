@@ -104,7 +104,7 @@ router.route('/editMessages')
         var userId = req.user._id;
         User.findById(userId, (error, user) => {
             Message.findById(message.id, (err, messageDB) => {
-                if (user.username !== messageDB.sender) {
+                if (user.username !== message.sender) {
                     return res
                         .status(500)
                         .send('The user is not the sender of this message');
@@ -114,52 +114,52 @@ router.route('/editMessages')
                 newMessage.message = messageBody.message;
                 newMessage.save(function (err) {
                     if (err) return res.status(500).send(err);
-                    res.status(201).send(newMessage);
+                    res.status(201).send(essage);
                     console.log("Message stored successfully");
-
-
                 });
+
             });
-
-        })
-
-        //API Route /api/messages/:sender/:receiver
-        //GET: Getting all messages between sender and receiver ordered by timestamp from DB
-        router.route('/messages/:sender/:receiver').get((req, res) => {
-            var sender = req.params.sender;
-            var receiver = req.params.receiver;
-
-            Message.find({
-                $or: [{
-                    $and: [{
-                        sender: sender
-                    },
-                    {
-                        receiver: receiver
-                    }
-                    ]
-                },
-                {
-                    $and: [{
-                        sender: receiver
-                    },
-                    {
-                        receiver: sender
-                    }
-                    ]
-                }
-                ]
-            })
-                .sort({
-                    timestamp: 1
-                })
-                .exec((err, messages) => {
-                    res.json(messages);
-                    console.log(
-                        'Getting all messages between ' + sender + ' and ' + receiver
-                    );
-                    res.end();
-                });
         });
 
-        module.exports = router;
+    });
+
+//API Route /api/messages/:sender/:receiver
+//GET: Getting all messages between sender and receiver ordered by timestamp from DB
+router.route('/messages/:sender/:receiver').get((req, res) => {
+    var sender = req.params.sender;
+    var receiver = req.params.receiver;
+
+    Message.find({
+        $or: [{
+            $and: [{
+                sender: sender
+            },
+            {
+                receiver: receiver
+            }
+            ]
+        },
+        {
+            $and: [{
+                sender: receiver
+            },
+            {
+                receiver: sender
+            }
+            ]
+        }
+        ]
+    })
+        .sort({
+            timestamp: 1
+        })
+        .exec((err, messages) => {
+            res.json(messages);
+            console.log(
+                'Getting all messages between ' + sender + ' and ' + receiver
+            );
+            res.end();
+        });
+});
+
+module.exports = router;
