@@ -47,4 +47,15 @@ export class RestWS extends AbstractWS {
         return Promise.reject(err);
       });
   }
+  public listUsers() {
+    const token = this.cookieService.get('token');
+    return this.makeGetRequest(this.path + 'api/users/', null, token)
+      .then(res => {
+        return Promise.resolve(res);
+      })
+      .catch(err => {
+        console.log('Error: ' + err);
+        return Promise.reject(err);
+      });
+  }
 }

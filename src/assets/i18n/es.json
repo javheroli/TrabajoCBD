@@ -19,10 +19,16 @@
   },
   "MENU": {
     "APP_SETTINGS": "Ajustes",
-    "CONTACTS": "Contactos",
+    "USERS": "Usuarios",
     "LOGOUT": "Cerrar sesión",
-    "MENU": "Menú"
+    "MENU": "Menú",
+    "PROFILE" : "Perfil"
   },
+
+  "USERS": {
+    "USERS": "Usuarios"
+  },
+
   "REGISTER": {
     "CONFIRM_PASSWORD": "Confirmar contraseña",
     "PROFILE_PIC": "Imagen de perfil",

@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button color="primary"></ion-back-button>
+        </ion-buttons>
+        <ion-title color="light">{{ 'USERS.USERS' | translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card class="bg-white" no-margin>
+
+        <ion-card-content>
+            <ion-card class="bg-primary" no-margin no-padding>
+                <ion-card-content no-margin no-padding>
+                    <div class="listFriends" *ngFor="let user of users">
+                        <ion-item class="bg-primary" no-margin>
+                            <ion-buttons slot="end">
+                                <ion-button shape="round" color="dark" slot="end" (click)="chat(user.username)">
+                                    <ion-icon name="send" class="larger" item-right></ion-icon>
+
+                                </ion-button>
+                                <br>
+
+                            </ion-buttons>
+
+                            <ion-avatar slot="start">
+                                <img src="{{user.image}}" class="user-avatar">
+
+                            </ion-avatar>
+
+                            <ion-label>
+
+                                <ion-text color="dark">
+                                    <h2>
+                                        <strong>{{user.firstName}} {{user.lastName}}</strong>
+                                    </h2>
+                                </ion-text>
+                            </ion-label>
+                        </ion-item>
+                    </div>
+
+                </ion-card-content>
+            </ion-card>
+
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { CookieService } from 'ngx-cookie-service';
 import { TranslateService } from '@ngx-translate/core';
 import { DataManagement } from './services/dataManagement';
+import { Pages } from './interfaces/pages';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { DataManagement } from './services/dataManagement';
 })
 export class AppComponent {
   public userLogged;
+  public appPages: Array<Pages>;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -35,7 +37,27 @@ export class AppComponent {
         this.userLogged = res;
       });
     }
+
+    this.appPages = [
+      {
+        title: 'Users',
+        url: '/users',
+        direct: 'forward',
+        icon: 'contact'
+      },
+
+      {
+        title: 'App Settings',
+        url: '/settings',
+        direct: 'forward',
+        icon: 'cog'
+      }
+    ];
     this.initializeApp();
+  }
+  logout() {
+    this.cookieService.delete('token');
+    this.navCtrl.navigateRoot('/');
   }
 
   initializeApp() {

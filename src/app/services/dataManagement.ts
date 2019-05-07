@@ -31,4 +31,14 @@ export class DataManagement {
         return Promise.reject(error);
       });
   }
+  public listUsers(): Promise<any> {
+    return this.restService
+      .listUsers()
+      .then(data => {
+        return Promise.resolve(data);
+      })
+      .catch(error => {
+        return Promise.reject(error);
+      });
+  }
 }
