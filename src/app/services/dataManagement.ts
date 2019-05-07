@@ -68,4 +68,41 @@ export class DataManagement {
         return Promise.reject('error');
       });
   }
+
+  public getMessages(sender: string, receiver: string): Promise<any> {
+    return this.restService
+      .getMessages(sender, receiver)
+      .then(data => {
+        return Promise.resolve(data);
+      })
+      .catch(error => {
+        return Promise.reject('error');
+      });
+  }
+
+  public sendMessage(
+    sender: string,
+    receiver: string,
+    message: string
+  ): Promise<any> {
+    return this.restService
+      .sendMessage(sender, receiver, message)
+      .then(data => {
+        return Promise.resolve(data);
+      })
+      .catch(error => {
+        return Promise.reject('error');
+      });
+  }
+
+  public getUserByUsername(username, token): Promise<any> {
+    return this.restService
+      .getUserByUsername(username, token)
+      .then(data => {
+        return Promise.resolve(data);
+      })
+      .catch(error => {
+        return Promise.reject(error);
+      });
+  }
 }

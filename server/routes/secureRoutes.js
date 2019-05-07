@@ -16,6 +16,20 @@ router.route('/getUserLogged')
         })
     })
 
+//API Route /api/users/:username
+//GET: Getting all users from DB
+router.route('/users/:username')
+    .get((req, res) => {
+        var username = req.params.username;
+        User.findOne({
+            username: username
+        }, (err, user) => {
+            res.json(user);
+            console.log("Getting the user with username: " + username);
+            res.end();
+        })
+    })
+
 //API Route /api/users/
 //GET: Getting all users from DB
 router.route('/users')

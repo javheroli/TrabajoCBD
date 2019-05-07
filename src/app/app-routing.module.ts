@@ -12,7 +12,22 @@ const routes: Routes = [
     path: 'users',
     loadChildren: './pages/users/users.module#UsersPageModule',
     canLoad: [AuthGuard]
-  }
+  },
+  {
+    path: 'chat',
+    children: [
+      {
+        path: ':loggedUsername',
+        children: [
+          {
+            path: ':otherUsername',
+            loadChildren: './pages/chat/chat.module#ChatPageModule',
+            canLoad: [AuthGuard]
+          }
+        ]
+      }
+    ]
+  },
 ];
 
 @NgModule({
