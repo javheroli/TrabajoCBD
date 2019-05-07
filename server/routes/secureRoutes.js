@@ -20,9 +20,15 @@ router.route('/getUserLogged')
 //GET: Getting all users from DB
 router.route('/users')
     .get((req, res) => {
-        User.find({}, (err, users) => {
+        var _id = req.user._id;
+
+        User.find({
+            '_id': {
+                $ne: _id
+            }
+        }, (err, users) => {
             res.json(users)
-            console.log("Getting all users");
+            console.log("Getting all users without user logged");
             res.end();
         })
     })
