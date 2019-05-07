@@ -12,7 +12,7 @@ const messageModel = new Schema({
   },
   timestamp: {
     type: Date,
-    required: true
+    default: Date.now()
   },
   message: {
     type: String,

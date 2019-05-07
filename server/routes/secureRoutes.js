@@ -33,6 +33,55 @@ router.route('/users')
         })
     })
 
+//API Route /api/messages/
+//POST: Creating a new message and storing it at DB
+router.route('/messages')
+    .post((req, res) => {
+        let message = new Message(req.body);
+        if (message.sender === message.receiver) {
+            return res.status(500).send("Sender and Receiver can not be the same user")
+        }
+        message.save(function (err) {
+            if (err) return res.status(500).send(err);
+            res.status(201).send(message);
+            console.log("Message stored successfully");
+
+        })
+
+    })
+
+//API Route /api/messages/:sender/:receiver
+//GET: Getting all messages between sender and receiver ordered by timestamp from DB
+router.route('/messages/:sender/:receiver')
+    .get((req, res) => {
+        var sender = req.params.sender;
+        var receiver = req.params.receiver;
+
+        Message.find({
+            $or: [{
+                $and: [{
+                    sender: sender
+                }, {
+                    receiver: receiver
+                }]
+            }, {
+                $and: [{
+                    sender: receiver
+                }, {
+                    receiver: sender
+                }]
+            }]
+
+        }).sort({
+            timestamp: 1
+        }).exec((err, messages) => {
+            res.json(messages)
+            console.log("Getting all messages between " + sender + " and " + receiver);
+            res.end();
+        });
+
+    })
+
 
 
 
