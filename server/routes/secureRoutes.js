@@ -20,8 +20,8 @@ router.route('/getUserLogged').get((req, res) => {
 router.route('/users/:username').get((req, res) => {
     var username = req.params.username;
     User.findOne({
-            username: username
-        },
+        username: username
+    },
         (err, user) => {
             res.json(user);
             console.log('Getting the user with username: ' + username);
@@ -36,10 +36,10 @@ router.route('/users').get((req, res) => {
     var _id = req.user._id;
 
     User.find({
-            _id: {
-                $ne: _id
-            }
-        },
+        _id: {
+            $ne: _id
+        }
+    },
         (err, users) => {
             res.json(users);
             console.log('Getting all users without user logged');
@@ -93,43 +93,73 @@ router.route('/deleteMessages/:messageId').delete((req, res) => {
     });
 });
 
-//API Route /api/messages/:sender/:receiver
-//GET: Getting all messages between sender and receiver ordered by timestamp from DB
-router.route('/messages/:sender/:receiver').get((req, res) => {
-    var sender = req.params.sender;
-    var receiver = req.params.receiver;
 
-    Message.find({
-            $or: [{
+//API Route /api/editMessages/
+//PUT: Edit a message
+router.route('/editMessages')
+    .put((req, res) => {
+        var messageBody = new Message(req.body);
+        var newMessage = new Message();
+        var messageDB = new Message();
+        var userId = req.user._id;
+        User.findById(userId, (error, user) => {
+            Message.findById(message.id, (err, messageDB) => {
+                if (user.username !== messageDB.sender) {
+                    return res
+                        .status(500)
+                        .send('The user is not the sender of this message');
+                }
+                if (err) return res.status(500).send(err);
+                newMessage = messageDB;
+                newMessage.message = messageBody.message;
+                newMessage.save(function (err) {
+                    if (err) return res.status(500).send(err);
+                    res.status(201).send(newMessage);
+                    console.log("Message stored successfully");
+
+
+                });
+            });
+
+        })
+
+        //API Route /api/messages/:sender/:receiver
+        //GET: Getting all messages between sender and receiver ordered by timestamp from DB
+        router.route('/messages/:sender/:receiver').get((req, res) => {
+            var sender = req.params.sender;
+            var receiver = req.params.receiver;
+
+            Message.find({
+                $or: [{
                     $and: [{
-                            sender: sender
-                        },
-                        {
-                            receiver: receiver
-                        }
+                        sender: sender
+                    },
+                    {
+                        receiver: receiver
+                    }
                     ]
                 },
                 {
                     $and: [{
-                            sender: receiver
-                        },
-                        {
-                            receiver: sender
-                        }
+                        sender: receiver
+                    },
+                    {
+                        receiver: sender
+                    }
                     ]
                 }
-            ]
-        })
-        .sort({
-            timestamp: 1
-        })
-        .exec((err, messages) => {
-            res.json(messages);
-            console.log(
-                'Getting all messages between ' + sender + ' and ' + receiver
-            );
-            res.end();
+                ]
+            })
+                .sort({
+                    timestamp: 1
+                })
+                .exec((err, messages) => {
+                    res.json(messages);
+                    console.log(
+                        'Getting all messages between ' + sender + ' and ' + receiver
+                    );
+                    res.end();
+                });
         });
-});
 
-module.exports = router;
+        module.exports = router;
