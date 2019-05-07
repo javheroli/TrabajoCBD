@@ -4,7 +4,8 @@ import { DataManagement } from 'src/app/services/dataManagement';
 import { interval } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/app.data.model';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chat',
@@ -27,8 +28,10 @@ export class ChatPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private dm: DataManagement,
     private cookieService: CookieService,
-    public actionSheetController: ActionSheetController
-  ) { }
+    public actionSheetController: ActionSheetController,
+    public alertCtrl: AlertController,
+    private translate: TranslateService
+  ) {}
   public intervallTimer = interval(1000);
   private subscription;
 
@@ -41,7 +44,6 @@ export class ChatPage implements OnInit {
 
     this.logged = await this.dm.getUserLogged(token);
     this.other = await this.dm.getUserByUsername(this.otherUsername, token);
-    console.log(this.other);
 
     this.messages = await this.dm.getMessages(
       this.logged.username,
@@ -116,32 +118,71 @@ export class ChatPage implements OnInit {
     return true;
   }
 
-
   async presentActionSheet(messageId: any) {
+    const translationDeleteHeader: string = this.translate.instant(
+      'CHAT.DELETE_CONFIRMATION_HEADER'
+    );
+    const translationDeleteMessage: string = this.translate.instant(
+      'CHAT.DELETE_CONFIRMATION_MESSAGE'
+    );
+    const translationCancel: string = this.translate.instant('CHAT.CANCEL');
+    const translationOK: string = this.translate.instant('CHAT.OK');
+    const translationActions: string = this.translate.instant('CHAT.ACTIONS');
+    const translationDelete: string = this.translate.instant('CHAT.DELETE');
+    const translationEdit: string = this.translate.instant('CHAT.EDIT');
+
     const actionSheet = await this.actionSheetController.create({
-      header: 'Albums',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          this.dm.deleteMessages(messageId);
-          console.log('Delete clicked');
+      header: translationActions,
+      buttons: [
+        {
+          text: translationDelete,
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            this.alertCtrl
+              .create({
+                header: translationDeleteHeader,
+                message: translationDeleteMessage,
+                buttons: [
+                  {
+                    text: translationOK,
+                    handler: () => {
+                      this.dm.deleteMessages(messageId).then(res => {
+                        this.dm
+                          .getMessages(
+                            this.logged.username,
+                            this.other.username
+                          )
+                          .then(res2 => {
+                            this.messages = res2;
+                          });
+                      });
+                    }
+                  },
+                  {
+                    text: translationCancel,
+                    role: 'Cancel'
+                  }
+                ]
+              })
+              .then(alertEl => {
+                alertEl.present();
+              });
+          }
+        },
+        {
+          text: translationEdit,
+          icon: 'create',
+          handler: () => {
+            console.log('Share clicked');
+          }
+        },
+        {
+          text: translationCancel,
+          icon: 'close',
+          role: 'cancel'
         }
-      }, {
-        text: 'Edit',
-        icon: 'create',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
+      ]
     });
     await actionSheet.present();
   }

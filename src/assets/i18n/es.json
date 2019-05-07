@@ -1,7 +1,14 @@
 {
   "CHAT": {
     "ME": "Yo",
-    "TYPE_A_MESSAGE": "Escribe un mensaje..."
+    "TYPE_A_MESSAGE": "Escribe un mensaje...",
+    "OK": "Vale",
+    "CANCEL": "Cancelar",
+    "DELETE_CONFIRMATION_HEADER": "Confirmar borrado",
+    "DELETE_CONFIRMATION_MESSAGE": "¿Está seguro de borrar este mensaje?",
+    "ACTIONS": "Acciones",
+    "DELETE": "Borrar",
+    "EDIT": "Editar"
   },
   "CONFIG": "Configuración",
 

@@ -1,7 +1,14 @@
 {
   "CHAT": {
     "ME": "Me",
-    "TYPE_A_MESSAGE": "Write a message..."
+    "TYPE_A_MESSAGE": "Write a message...",
+    "OK": "Ok",
+    "CANCEL": "Cancel",
+    "DELETE_CONFIRMATION_HEADER": "Confirm delete",
+    "DELETE_CONFIRMATION_MESSAGE": "Are you sure of deleting this message?",
+    "ACTIONS": "Actions",
+    "DELETE": "Delete",
+    "EDIT": "Edit"
   },
   "CONFIG": "Config",
 

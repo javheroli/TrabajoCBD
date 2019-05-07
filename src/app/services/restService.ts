@@ -146,7 +146,9 @@ export class RestWS extends AbstractWS {
     let token: string;
     token = this.cookieService.get('token');
     return this.makeDeleteRequest(
-      this.path + 'deleteMessages/' + messageId, token)
+      this.path + 'api/deleteMessages/' + messageId,
+      token
+    )
       .then(res => {
         return Promise.resolve(res);
       })

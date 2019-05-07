@@ -23,17 +23,16 @@
         <div class="right-bubble">
           <span class="msg-name">{{ 'CHAT.ME' | translate}}</span>
           <span class="msg-date">{{message['timestamp'] | date:'short'}}</span>
-          <p text-wrap>{{message['message']}}</p>
-          <ion-button icon-only (click)="presentActionSheet(message._id)">
-            Change
-          </ion-button>
+          <ion-icon slot="start" name="menu" class="menuIcon" (click)="presentActionSheet(message._id)">
+          </ion-icon>
+          <p text-wrap class="meMessages">{{message['message']}}</p>
         </div>
       </div>
       <div class="chat-message" text-left *ngIf="message['sender'] !== logged.username">
         <div class="left-bubble">
           <span class="msg-name">{{message['sender']}}</span>
           <span class="msg-date">{{message['timestamp'] | date:'short'}}</span>
-          <p text-wrap>{{message['message']}}</p>
+          <p text-wrap class="heMessages">{{message['message']}}</p>
         </div>
       </div>
 
