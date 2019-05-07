@@ -24,6 +24,9 @@
           <span class="msg-name">{{ 'CHAT.ME' | translate}}</span>
           <span class="msg-date">{{message['timestamp'] | date:'short'}}</span>
           <p text-wrap>{{message['message']}}</p>
+          <ion-button icon-only (click)="presentActionSheet(message._id)">
+            Change
+          </ion-button>
         </div>
       </div>
       <div class="chat-message" text-left *ngIf="message['sender'] !== logged.username">

@@ -141,4 +141,18 @@ export class RestWS extends AbstractWS {
         return Promise.reject(err);
       });
   }
+
+  public deleteMessages(messageId) {
+    let token: string;
+    token = this.cookieService.get('token');
+    return this.makeDeleteRequest(
+      this.path + 'deleteMessages/' + messageId, token)
+      .then(res => {
+        return Promise.resolve(res);
+      })
+      .catch(err => {
+        console.log('Error: ' + err);
+        return Promise.reject(err);
+      });
+  }
 }

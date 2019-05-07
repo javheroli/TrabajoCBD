@@ -4,6 +4,7 @@ import { DataManagement } from 'src/app/services/dataManagement';
 import { interval } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from 'src/app/app.data.model';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-chat',
@@ -25,8 +26,9 @@ export class ChatPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private dm: DataManagement,
-    private cookieService: CookieService
-  ) {}
+    private cookieService: CookieService,
+    public actionSheetController: ActionSheetController
+  ) { }
   public intervallTimer = interval(1000);
   private subscription;
 
@@ -112,5 +114,35 @@ export class ChatPage implements OnInit {
       return false;
     }
     return true;
+  }
+
+
+  async presentActionSheet(messageId: any) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Albums',
+      buttons: [{
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          this.dm.deleteMessages(messageId);
+          console.log('Delete clicked');
+        }
+      }, {
+        text: 'Edit',
+        icon: 'create',
+        handler: () => {
+          console.log('Share clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 }

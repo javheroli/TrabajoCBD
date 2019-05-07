@@ -1,10 +1,10 @@
-import {} from './../app.data.model';
+import { } from './../app.data.model';
 import { Injectable } from '@angular/core';
 import { RestWS } from './restService';
 
 @Injectable()
 export class DataManagement {
-  constructor(private restService: RestWS) {}
+  constructor(private restService: RestWS) { }
 
   public turnOnServer() {
     this.restService.turnOnServer();
@@ -98,6 +98,17 @@ export class DataManagement {
   public getUserByUsername(username, token): Promise<any> {
     return this.restService
       .getUserByUsername(username, token)
+      .then(data => {
+        return Promise.resolve(data);
+      })
+      .catch(error => {
+        return Promise.reject(error);
+      });
+  }
+
+  public deleteMessages(messageId): Promise<any> {
+    return this.restService
+      .deleteMessages(messageId)
       .then(data => {
         return Promise.resolve(data);
       })
