@@ -22,7 +22,7 @@
     "USERS": "Users",
     "LOGOUT": "Logout",
     "MENU": "Menu",
-    "PROFILE" : "Profile"
+    "PROFILE": "Profile"
   },
 
   "USERS": {
@@ -47,7 +47,13 @@
     "SIGN_UP": "Sign up",
     "SUCCESS": "Sign up done successfully!",
     "THIS_FIELD_IS_REQUIRED": "This field is required",
-    "USERNAME": "Username"
+    "USERNAME": "Username",
+    "DEGREE": "Degree",
+    "COURSE": "Course",
+    "IS": "Software Engineering",
+    "IC": "Computer Engineering",
+    "TI": "Computer Technologies",
+    "S": "Health Engineering"
   },
 
   "SETTINGS": {

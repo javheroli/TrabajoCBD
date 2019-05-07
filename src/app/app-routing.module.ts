@@ -5,6 +5,10 @@ import { AuthGuard } from './guards/auth/auth.guard';
 const routes: Routes = [
   { path: '', loadChildren: './pages/login/login.module#LoginPageModule' },
   {
+    path: 'userForm',
+    loadChildren: './pages/register/register.module#RegisterPageModule'
+  },
+  {
     path: 'users',
     loadChildren: './pages/users/users.module#UsersPageModule',
     canLoad: [AuthGuard]

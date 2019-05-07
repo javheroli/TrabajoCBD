@@ -41,4 +41,31 @@ export class DataManagement {
         return Promise.reject(error);
       });
   }
+
+  public register(
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    degree: string,
+    course: string,
+    profilePic
+  ): Promise<any> {
+    return this.restService
+      .register(
+        username,
+        password,
+        firstName,
+        lastName,
+        degree,
+        course,
+        profilePic
+      )
+      .then(data => {
+        return Promise.resolve(data);
+      })
+      .catch(error => {
+        return Promise.reject('error');
+      });
+  }
 }

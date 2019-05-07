@@ -1,0 +1,192 @@
+<ion-content padding class="login auth-page">
+
+  <div class="auth-content">
+    <!-- Logo -->
+    <div class="arriba">
+      <ion-item style="width:350px; float: right;">
+        <ion-icon name="md-globe" slot="start" color="light"></ion-icon>
+        <ion-label color="light">{{ 'SETTINGS.APP_LANGUAGE' | translate}}</ion-label>
+        <ion-select [(ngModel)]="idioma" (ionChange)="changeLanguage($event)">
+          <ion-select-option value="es">Español</ion-select-option>
+          <ion-select-option value="en">English</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <div padding-horizontal text-center>
+      <div class="logo"></div>
+      <h3 no-margin>
+        <ion-text color="light" class="fw700">
+          <ion-text color="primary">{{ 'REGISTER.REGISTER' | translate}}</ion-text>
+        </ion-text>
+      </h3>
+    </div>
+
+    <!-- Register form -->
+    <br>
+    <ion-card class="form-card">
+      <ion-card-header class="bg-dark">
+        <ion-card-title>{{ 'REGISTER.INTRUDUCE_INFORMATION' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="onRegisterForm">
+          <ion-item>
+            <ion-label position="floating">
+              <ion-icon name="person" item-start></ion-icon>{{ 'REGISTER.USERNAME' | translate}}
+            </ion-label>
+            <ion-input color="secondary" type="text" maxlength="30" formControlName="username" [(ngModel)]="username">
+            </ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08"
+            *ngIf="onRegisterForm.get('username').touched && onRegisterForm.get('username').hasError('required')">
+            <ion-text color="warning">
+              {{ 'REGISTER.REQUIRED_FIELD' | translate}}
+            </ion-text>
+          </p>
+
+          <ion-item no-padding>
+            <ion-label position="floating">
+              <ion-icon name="lock" item-start></ion-icon>
+              {{ 'REGISTER.PASSWORD' | translate}}
+            </ion-label>
+            <ion-input [(ngModel)]="password" color="secondary" maxlength="30" type="password"
+              formControlName="password"></ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08"
+            *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('required')">
+            <ion-text color="warning">
+              {{ 'REGISTER.REQUIRED_FIELD' | translate}}
+            </ion-text>
+          </p>
+
+          <ion-item no-padding>
+            <ion-label position="floating">
+              <ion-icon name="lock" item-start></ion-icon>
+              {{ 'REGISTER.CONFIRM_PASSWORD' | translate}}
+            </ion-label>
+            <ion-input (change)="confirmPasswordValidation()" maxlength="30" [(ngModel)]="confirmPassword"
+              color="secondary" type="password" formControlName="confirmPassword">
+            </ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08"
+            *ngIf="onRegisterForm.get('confirmPassword').touched && onRegisterForm.get('confirmPassword').hasError('required')">
+            <ion-text color="warning">
+              {{ 'REGISTER.REQUIRED_FIELD' | translate}}
+            </ion-text>
+          </p>
+          <p ion-text color="warning" class="text08" *ngIf="!confirmPasswordValidation()">
+            <ion-text color="warning">
+              {{ 'REGISTER.PASSWORD_VALIDATION_FALSE' | translate}}
+            </ion-text>
+          </p>
+
+
+          <ion-item no-padding>
+            <ion-label position="floating">
+              <ion-icon name="create" item-start></ion-icon>
+              {{ 'REGISTER.FIRST_NAME' | translate}}
+            </ion-label>
+            <ion-input color="secondary" type="text" formControlName="firstName" maxlength="30" [(ngModel)]="firstName">
+            </ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08"
+            *ngIf="onRegisterForm.get('firstName').touched && onRegisterForm.get('firstName').hasError('required')">
+            <ion-text color="warning">
+              {{ 'REGISTER.REQUIRED_FIELD' | translate}}
+            </ion-text>
+          </p>
+
+          <ion-item no-padding>
+            <ion-label position="floating">
+              <ion-icon name="create" item-start></ion-icon>
+              {{ 'REGISTER.LAST_NAME' | translate}}
+            </ion-label>
+            <ion-input color="secondary" type="text" formControlName="lastName" maxlength="50" [(ngModel)]="lastName">
+            </ion-input>
+          </ion-item>
+          <p ion-text color="warning" class="text08"
+            *ngIf="onRegisterForm.get('lastName').touched && onRegisterForm.get('lastName').hasError('required')">
+            <ion-text color="warning">
+              {{ 'REGISTER.REQUIRED_FIELD' | translate}}
+            </ion-text>
+          </p>
+
+          <ion-item>
+            <ion-label>
+              <ion-icon name="school" item-start></ion-icon>
+              {{ 'REGISTER.DEGREE' | translate}}
+            </ion-label>
+            <ion-select [(ngModel)]="degree" placeholder="Select One" formControlName="degree">
+              <ion-select-option value="IS">{{ 'REGISTER.IS' | translate}}</ion-select-option>
+              <ion-select-option value="IC">{{ 'REGISTER.IC' | translate}}</ion-select-option>
+              <ion-select-option value="TI">{{ 'REGISTER.TI' | translate}}</ion-select-option>
+              <ion-select-option value="S">{{ 'REGISTER.S' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <p ion-text color="warning" class="text08"
+            *ngIf="onRegisterForm.get('degree').touched && onRegisterForm.get('degree').hasError('required')">
+            <ion-text color="warning">
+              {{ 'REGISTER.REQUIRED_FIELD' | translate}}
+            </ion-text>
+          </p>
+
+          <ion-item>
+            <ion-label>
+              <ion-icon name="trending-up" item-start></ion-icon>
+              {{ 'REGISTER.COURSE' | translate}}
+            </ion-label>
+            <ion-select [(ngModel)]="course" placeholder="Select One" formControlName="course">
+              <ion-select-option value="1º">1º</ion-select-option>
+              <ion-select-option value="2º">2º</ion-select-option>
+              <ion-select-option value="3º">3º</ion-select-option>
+              <ion-select-option value="4º">4º</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <p ion-text color="warning" class="text08"
+            *ngIf="onRegisterForm.get('course').touched && onRegisterForm.get('course').hasError('required')">
+            <ion-text color="warning">
+              {{ 'REGISTER.REQUIRED_FIELD' | translate}}
+            </ion-text>
+          </p>
+
+          <ion-item>
+            <ion-card class="imageCard1">
+              <ion-card-header>
+                <ion-title>
+                  <ion-icon name="image" item-start></ion-icon>
+                  {{ 'REGISTER.PROFILE_PIC' | translate}}
+                </ion-title>
+              </ion-card-header>
+              <ion-card-content>
+                <br>
+                <div><input type='file' id="procPic" (change)="onProfilePicInputChange($event.target.files)" /></div>
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+          <ion-item lines="none"></ion-item>
+
+
+        </form>
+      </ion-card-content>
+    </ion-card>
+    <br>
+    <br>
+    <div margin-top>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="signUp()"
+        [disabled]="!onRegisterForm.valid || !confirmPasswordValidation()" tappable>
+        <ion-icon name="log-in"></ion-icon>
+        {{ 'REGISTER.SIGN_UP' | translate}}
+      </ion-button>
+
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span (click)="goToLogin()" tappable>
+        <ion-text color="light">
+          <strong>{{ 'REGISTER.I_HAVE_AN_ACCOUNT' | translate}}</strong>
+        </ion-text>
+      </span>
+    </div>
+
+  </div>
+</ion-content>

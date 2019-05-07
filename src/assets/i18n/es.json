@@ -22,7 +22,7 @@
     "USERS": "Usuarios",
     "LOGOUT": "Cerrar sesión",
     "MENU": "Menú",
-    "PROFILE" : "Perfil"
+    "PROFILE": "Perfil"
   },
 
   "USERS": {
@@ -45,7 +45,13 @@
     "SIGN_UP": "Registro",
     "SUCCESS": "¡Registro realizado correctamente!",
     "THIS_FIELD_IS_REQUIRED": "Este campo es obligatorio",
-    "USERNAME": "Usuario"
+    "USERNAME": "Usuario",
+    "DEGREE": "Grado",
+    "COURSE": "Curso",
+    "IS": "Ingeniería del Software",
+    "IC": "Ingeniería de Computadores",
+    "TI": "Tecnologías Informáticas",
+    "S": "Ingeniería de la Salud"
   },
 
   "SETTINGS": {

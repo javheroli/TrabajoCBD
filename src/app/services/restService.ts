@@ -58,4 +58,36 @@ export class RestWS extends AbstractWS {
         return Promise.reject(err);
       });
   }
+
+  public register(
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    degree: string,
+    course: string,
+    profilePic
+  ) {
+    const fd = new FormData();
+    fd.append('username', username);
+    fd.append('password', password);
+    fd.append('firstName', firstName);
+    fd.append('lastName', lastName);
+    fd.append('degree', degree);
+    fd.append('course', course);
+    if (profilePic !== null) {
+      console.log(profilePic);
+      fd.append('image', profilePic);
+    }
+
+    return this.makePostRequest(this.path + 'api/auth/signup/', fd)
+      .then(res => {
+        console.log('Sign up successfully');
+        return Promise.resolve(res);
+      })
+      .catch(error => {
+        console.log('Error: ' + error);
+        return Promise.reject(error);
+      });
+  }
 }

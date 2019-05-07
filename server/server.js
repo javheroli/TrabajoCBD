@@ -8,7 +8,9 @@ var bodyParser = require('body-parser');
 require('./auth/auth');
 require('dotenv').config();
 var multer = require('multer');
-var upload = multer();
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
+
 
 
 
@@ -34,7 +36,26 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 //For parsing multipart/form-data
-app.use(upload.array());
+//Parser to upload an image to Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
+const storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "userImages",
+  allowedFormats: ["jpg", "png", "jpeg", "gif"],
+  transformation: [{
+    width: 500,
+    height: 500,
+    crop: "limit"
+  }]
+});
+const parser = multer({
+  storage: storage
+});
+app.use(parser.single('image'));
 
 //Allowing Cross-Origin Request
 app.use((req, res, next) => {
