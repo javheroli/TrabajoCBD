@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   NavController,
   AlertController,
+  MenuController,
   LoadingController
 } from '@ionic/angular';
 import { User } from '../../app.data.model';
@@ -24,7 +25,8 @@ export class UsersPage implements OnInit {
     private cookieService: CookieService,
     public alertCtrl: AlertController,
     private translate: TranslateService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public menuCtrl: MenuController,
   ) {
     const token = this.cookieService.get('token');
     this.dM
