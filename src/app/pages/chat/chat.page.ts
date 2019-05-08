@@ -19,6 +19,8 @@ export class ChatPage implements OnInit {
   logged: User = null;
   message: string;
   messages: any;
+  editMessage: any;
+  edit: boolean = false;
   private mutationObserver: MutationObserver;
 
   @ViewChild('content') content;
@@ -31,7 +33,7 @@ export class ChatPage implements OnInit {
     public actionSheetController: ActionSheetController,
     public alertCtrl: AlertController,
     private translate: TranslateService
-  ) {}
+  ) { }
   public intervallTimer = interval(1000);
   private subscription;
 
@@ -118,12 +120,18 @@ export class ChatPage implements OnInit {
     return true;
   }
 
-  async presentActionSheet(messageId: any) {
+  async presentActionSheet(message: any) {
     const translationDeleteHeader: string = this.translate.instant(
       'CHAT.DELETE_CONFIRMATION_HEADER'
     );
     const translationDeleteMessage: string = this.translate.instant(
       'CHAT.DELETE_CONFIRMATION_MESSAGE'
+    );
+    const translationEditHeader: string = this.translate.instant(
+      'CHAT.EDIT_CONFIRMATION_HEADER'
+    );
+    const translationEditMessage: string = this.translate.instant(
+      'CHAT.EDIT_CONFIRMATION_MESSAGE'
     );
     const translationCancel: string = this.translate.instant('CHAT.CANCEL');
     const translationOK: string = this.translate.instant('CHAT.OK');
@@ -147,7 +155,7 @@ export class ChatPage implements OnInit {
                   {
                     text: translationOK,
                     handler: () => {
-                      this.dm.deleteMessages(messageId).then(res => {
+                      this.dm.deleteMessages(message._id).then(res => {
                         this.dm
                           .getMessages(
                             this.logged.username,
@@ -174,7 +182,35 @@ export class ChatPage implements OnInit {
           text: translationEdit,
           icon: 'create',
           handler: () => {
-            console.log('Share clicked');
+            this.alertCtrl
+              .create({
+                header: translationEditHeader,
+                message: translationEditMessage,
+                buttons: [
+                  {
+                    text: translationOK,
+                    handler: () => {
+                      this.editMessage = message;
+                      this.edit = true;
+                      this.dm
+                        .getMessages(
+                          this.logged.username,
+                          this.other.username
+                        )
+                        .then(res2 => {
+                          this.messages = res2;
+                        });
+                    }
+                  },
+                  {
+                    text: translationCancel,
+                    role: 'Cancel'
+                  }
+                ]
+              })
+              .then(alertEl => {
+                alertEl.present();
+              });
           }
         },
         {
@@ -185,5 +221,22 @@ export class ChatPage implements OnInit {
       ]
     });
     await actionSheet.present();
+  }
+
+
+  async editMessages() {
+    const editMessage = await this.dm.editMessages(
+      this.editMessage
+    );
+    this.editMessage = '';
+    this.edit = false;
+    this.dm
+      .getMessages(
+        this.logged.username,
+        this.other.username
+      )
+      .then(res2 => {
+        this.messages = res2;
+      });
   }
 }

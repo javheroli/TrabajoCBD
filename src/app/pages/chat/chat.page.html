@@ -23,7 +23,7 @@
         <div class="right-bubble">
           <span class="msg-name">{{ 'CHAT.ME' | translate}}</span>
           <span class="msg-date">{{message['timestamp'] | date:'short'}}</span>
-          <ion-icon slot="start" name="menu" class="menuIcon" (click)="presentActionSheet(message._id)">
+          <ion-icon slot="start" name="menu" class="menuIcon" (click)="presentActionSheet(message)">
           </ion-icon>
           <p text-wrap class="meMessages">{{message['message']}}</p>
         </div>
@@ -41,13 +41,25 @@
 </ion-content>
 
 <ion-footer (keypress)="keypress($event)">
-  <ion-toolbar>
+  <ion-toolbar *ngIf="!edit">
     <div id="footer">
       <div class="elem">
         <ion-input placeholder="{{ 'CHAT.TYPE_A_MESSAGE' | translate}}" type="text" [(ngModel)]="message"></ion-input>
       </div>
       <div class="elem">
         <ion-button icon-only (click)="sendMessage()">
+          <ion-icon name="send"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="edit">
+    <div id="footer">
+      <div class="elem">
+        <ion-input type="text" [(ngModel)]="editMessage.message"></ion-input>
+      </div>
+      <div class="elem">
+        <ion-button icon-only (click)="editMessages()">
           <ion-icon name="send"></ion-icon>
         </ion-button>
       </div>

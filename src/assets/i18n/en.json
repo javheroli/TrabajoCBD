@@ -6,13 +6,13 @@
     "CANCEL": "Cancel",
     "DELETE_CONFIRMATION_HEADER": "Confirm delete",
     "DELETE_CONFIRMATION_MESSAGE": "Are you sure of deleting this message?",
+    "EDIT_CONFIRMATION_HEADER": "Confirm edit",
+    "EDIT_CONFIRMATION_MESSAGE": "Are you sure of editing this message?",
     "ACTIONS": "Actions",
     "DELETE": "Delete",
     "EDIT": "Edit"
   },
   "CONFIG": "Config",
-
-
   "LOGIN": {
     "FAIL": "The credentials introduced were not found in the system. Please try again.",
     "NEW_HERE": "New here?",
@@ -31,11 +31,9 @@
     "MENU": "Menu",
     "PROFILE": "Profile"
   },
-
   "USERS": {
     "USERS": "Users"
   },
-
   "REGISTER": {
     "CONFIRM_PASSWORD": "Confirm password",
     "PROFILE_PIC": "Profile picture",
@@ -62,7 +60,6 @@
     "TI": "Computer Technologies",
     "S": "Health Engineering"
   },
-
   "SETTINGS": {
     "APP_LANGUAGE": "App language",
     "APP_SETTINGS": "App settings",

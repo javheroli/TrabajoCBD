@@ -6,13 +6,13 @@
     "CANCEL": "Cancelar",
     "DELETE_CONFIRMATION_HEADER": "Confirmar borrado",
     "DELETE_CONFIRMATION_MESSAGE": "¿Está seguro de borrar este mensaje?",
+    "EDIT_CONFIRMATION_HEADER": "Confirmar editar",
+    "EDIT_CONFIRMATION_MESSAGE": "¿Está seguro de editar este mensaje?",
     "ACTIONS": "Acciones",
     "DELETE": "Borrar",
     "EDIT": "Editar"
   },
   "CONFIG": "Configuración",
-
-
   "LOGIN": {
     "FAIL": "Las credenciales introducidas no fueron correctas. Por favor, intentelo de nuevo.",
     "NEW_HERE": "¿Nuevo aquí?",
@@ -31,11 +31,9 @@
     "MENU": "Menú",
     "PROFILE": "Perfil"
   },
-
   "USERS": {
     "USERS": "Usuarios"
   },
-
   "REGISTER": {
     "CONFIRM_PASSWORD": "Confirmar contraseña",
     "PROFILE_PIC": "Imagen de perfil",
@@ -60,7 +58,6 @@
     "TI": "Tecnologías Informáticas",
     "S": "Ingeniería de la Salud"
   },
-
   "SETTINGS": {
     "APP_LANGUAGE": "Idioma",
     "APP_SETTINGS": "Ajustes",

@@ -157,4 +157,23 @@ export class RestWS extends AbstractWS {
         return Promise.reject(err);
       });
   }
+
+  public editMessages(message) {
+    const fd = new FormData();
+    let token: string;
+    token = this.cookieService.get('token');
+    fd.append('message', message.message);
+    return this.makePostRequest(
+      this.path + 'api/editMessages/' + message._id,
+      fd,
+      token
+    )
+      .then(res => {
+        return Promise.resolve(res);
+      })
+      .catch(err => {
+        console.log('Error: ' + err);
+        return Promise.reject(err);
+      });
+  }
 }

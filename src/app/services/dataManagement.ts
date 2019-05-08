@@ -116,4 +116,15 @@ export class DataManagement {
         return Promise.reject(error);
       });
   }
+
+  public editMessages(message): Promise<any> {
+    return this.restService
+      .editMessages(message)
+      .then(data => {
+        return Promise.resolve(data);
+      })
+      .catch(error => {
+        return Promise.reject(error);
+      });
+  }
 }

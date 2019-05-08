@@ -96,26 +96,24 @@ router.route('/deleteMessages/:messageId').delete((req, res) => {
 
 //API Route /api/editMessages/
 //PUT: Edit a message
-router.route('/editMessages')
-    .put((req, res) => {
+router.route('/editMessages/:messageId')
+    .post((req, res) => {
+        var messageId = req.params.messageId;
         var messageBody = new Message(req.body);
-        var newMessage = new Message();
-        var messageDB = new Message();
         var userId = req.user._id;
         User.findById(userId, (error, user) => {
-            Message.findById(message.id, (err, messageDB) => {
-                if (user.username !== message.sender) {
+            Message.findById(messageId, (err, messageDB) => {
+                if (user.username !== messageDB.sender) {
                     return res
                         .status(500)
                         .send('The user is not the sender of this message');
                 }
                 if (err) return res.status(500).send(err);
-                newMessage = messageDB;
-                newMessage.message = messageBody.message;
-                newMessage.save(function (err) {
+                messageDB.message = messageBody.message;
+                messageDB.save(function (err) {
                     if (err) return res.status(500).send(err);
-                    res.status(201).send(essage);
-                    console.log("Message stored successfully");
+                    res.status(201).send(messageDB);
+                    console.log("Message edit successfully");
                 });
 
             });
