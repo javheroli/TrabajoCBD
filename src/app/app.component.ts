@@ -44,13 +44,6 @@ export class AppComponent {
         url: '/users',
         direct: 'forward',
         icon: 'contact'
-      },
-
-      {
-        title: 'App Settings',
-        url: '/settings',
-        direct: 'forward',
-        icon: 'cog'
       }
     ];
     this.initializeApp();

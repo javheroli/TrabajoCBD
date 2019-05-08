@@ -40,7 +40,7 @@ export class UsersPage implements OnInit {
     this.listUsers();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   chat(otherUsername) {
     this.navCtrl.navigateForward(
@@ -58,6 +58,11 @@ export class UsersPage implements OnInit {
       .then((data: any) => {
         this.users = data;
       })
-      .catch(error => {});
+      .catch(error => { });
+  }
+
+  changeLanguage(selectedValue: { detail: { value: string } }) {
+    this.cookieService.set('lang', selectedValue.detail.value);
+    this.translate.use(selectedValue.detail.value);
   }
 }

@@ -3,8 +3,23 @@
         <ion-buttons slot="start">
             <ion-menu-button color="secondary"></ion-menu-button>
         </ion-buttons>
-        <ion-title color="light">{{ 'USERS.USERS' | translate}}</ion-title>
+        <div class="auth-content altoCompleto">
+            <div class="arriba">
+                <div style="position:absolute; top:12px;">
+                    <ion-title color="light">{{ 'USERS.USERS' | translate}}</ion-title>
+                </div>
+                <ion-item style="width:350px; float: right;">
+                    <ion-icon name="md-globe" slot="start" color="light"></ion-icon>
+                    <ion-label color="light">{{ 'SETTINGS.APP_LANGUAGE' | translate}}</ion-label>
+                    <ion-select [(ngModel)]="idioma" (ionChange)="changeLanguage($event)">
+                        <ion-select-option value="es">Español</ion-select-option>
+                        <ion-select-option value="en">English</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+        </div>
     </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
