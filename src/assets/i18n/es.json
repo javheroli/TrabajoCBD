@@ -64,5 +64,12 @@
     "GENERAL": "General",
     "LOGOUT": "Cerrar sesión",
     "PROFILE": "Perfil"
+  },
+
+  "FILTER": {
+    "DEGREE":"Filtrar por grado:",
+    "COURSE":"Filtrar por curso:",
+    "REMOVE": "Quitar",
+    "APPLY": "Aplicar"
   }
 }

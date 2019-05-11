@@ -47,9 +47,22 @@ export class RestWS extends AbstractWS {
         return Promise.reject(err);
       });
   }
-  public listUsers() {
+  public listUsers(degreeFilter: string, courseFilter: string, keyword: string) {
     const token = this.cookieService.get('token');
-    return this.makeGetRequest(this.path + 'api/users/', null, token)
+    let url = '';
+    if (degreeFilter == null && courseFilter == null && keyword == null) {
+      url = "api/users/";
+    } else if (degreeFilter != null && courseFilter == null && keyword == null) {
+      url = "api/users?degree=" + degreeFilter;
+    } else if (degreeFilter == null && courseFilter != null && keyword == null) {
+      url = "api/users?course=" + courseFilter;
+    } else if (degreeFilter != null && courseFilter != null && keyword == null) {
+      url = "api/users?degree=" + degreeFilter + "&course=" + courseFilter;
+    } else {
+      url = "api/users/search?keyword=" + keyword;
+    }
+
+    return this.makeGetRequest(this.path + url, null, token)
       .then(res => {
         return Promise.resolve(res);
       })
@@ -129,7 +142,7 @@ export class RestWS extends AbstractWS {
 
   public getUserByUsername(username, token) {
     return this.makeGetRequest(
-      this.path + 'api/users/' + username + '/',
+      this.path + 'api/user/' + username + '/',
       null,
       token
     )

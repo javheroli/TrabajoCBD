@@ -66,5 +66,12 @@
     "GENERAL": "General",
     "LOGOUT": "Logout",
     "PROFILE": "Profile"
+  },
+  
+  "FILTER": {
+    "DEGREE":"Filter by degree:",
+    "COURSE":"Filter by course:",
+    "REMOVE": "Remove",
+    "APPLY": "Apply"
   }
 }

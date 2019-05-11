@@ -18,6 +18,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class UsersPage implements OnInit {
   users: User[] = [];
   logged: User;
+  keyword: string;
+  degreeFilter: string;
+  courseFilter: string;
 
   constructor(
     public navCtrl: NavController,
@@ -37,7 +40,7 @@ export class UsersPage implements OnInit {
       .catch(err => {
         console.log('Error: ' + err);
       });
-    this.listUsers();
+    this.listUsers(null, null, null);
   }
 
   ngOnInit() { }
@@ -52,9 +55,9 @@ export class UsersPage implements OnInit {
     this.menuCtrl.enable(true);
   }
 
-  private listUsers(): void {
+  private listUsers(degreeFilter: string, courseFilter: string, keyword: string): void {
     this.dM
-      .listUsers()
+      .listUsers(degreeFilter, courseFilter, keyword)
       .then((data: any) => {
         this.users = data;
       })
@@ -65,4 +68,23 @@ export class UsersPage implements OnInit {
     this.cookieService.set('lang', selectedValue.detail.value);
     this.translate.use(selectedValue.detail.value);
   }
+
+  searchUsers() {
+    this.degreeFilter = null;
+    this.courseFilter = null;
+    this.listUsers(this.degreeFilter, this.courseFilter, this.keyword);
+  }
+
+  applyFilters() {
+    this.keyword = null;
+    this.listUsers(this.degreeFilter, this.courseFilter, this.keyword);
+  }
+
+  removeFilters() {
+    this.degreeFilter = null;
+    this.courseFilter = null;
+    this.listUsers(this.degreeFilter, this.courseFilter, null);
+  }
+
+
 }

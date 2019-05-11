@@ -17,7 +17,7 @@ router.route('/getUserLogged').get((req, res) => {
 
 //API Route /api/users/:username
 //GET: Getting all users from DB
-router.route('/users/:username').get((req, res) => {
+router.route('/user/:username').get((req, res) => {
     var username = req.params.username;
     User.findOne({
         username: username
@@ -30,23 +30,95 @@ router.route('/users/:username').get((req, res) => {
     );
 });
 
-//API Route /api/users/
-//GET: Getting all users from DB
-router.route('/users').get((req, res) => {
-    var _id = req.user._id;
 
-    User.find({
-        _id: {
-            $ne: _id
-        }
-    },
+//API Route /api/users/search?keyword=*
+//GET: Getting all users from DB that contain the keyword in their username, first name or last name
+router.route('/users/search/:keyword?').get((req, res) => {
+    var _id = req.user._id;
+    var keyword = req.query.keyword;
+    var query;
+    if (keyword === undefined || keyword == '') {
+        query = {
+            _id: {
+                $ne: _id
+            }
+        };
+    } else {
+        query = {
+            $and: [
+                {
+                    $or: [
+                        { username: { $regex: keyword, $options: 'i' } },
+                        { firstName: { $regex: keyword, $options: 'i' } },
+                        { lastName: { $regex: keyword, $options: 'i' } }]
+                },
+                {
+                    _id: {
+                        $ne: _id
+                    }
+                }
+            ]
+        };
+    }
+
+    User.find(query,
         (err, users) => {
             res.json(users);
-            console.log('Getting all users without user logged');
+            console.log('Getting all but the current user that contain the keyword in their username, first name or last name');
             res.end();
         }
     );
 });
+
+//API Route /api/users?degree=*&course=*
+//GET: Getting all users from DB filtered by their degree and/or course
+router.route('/users/:degree?/:course?').get((req, res) => {
+    var _id = req.user._id;
+    var degree = req.query.degree;
+    var course = req.query.course;
+    var query;
+    if (degree === undefined && course === undefined) {
+        query = {
+            _id: {
+                $ne: _id
+            }
+        };
+    } else if (degree !== undefined && course === undefined) {
+        query = {
+            _id: {
+                $ne: _id
+            },
+            degree: degree
+        };
+    } else if (degree === undefined && course !== undefined) {
+        query = {
+            _id: {
+                $ne: _id
+            },
+            course: course
+        };
+    } else {
+        query = {
+            _id: {
+                $ne: _id
+            },
+            degree: degree,
+            course: course
+        };
+    }
+
+    User.find(query,
+        (err, users) => {
+            res.json(users);
+            console.log('Getting all but the current user filtered by their degree and/or course');
+            res.end();
+        }
+    );
+});
+
+
+
+
 
 //API Route /api/messages/
 //POST: Creating a new message and storing it at DB

@@ -31,9 +31,9 @@ export class DataManagement {
         return Promise.reject(error);
       });
   }
-  public listUsers(): Promise<any> {
+  public listUsers(degreeFilter: string, courseFilter: string, keyword: string): Promise<any> {
     return this.restService
-      .listUsers()
+      .listUsers(degreeFilter, courseFilter, keyword)
       .then(data => {
         return Promise.resolve(data);
       })
