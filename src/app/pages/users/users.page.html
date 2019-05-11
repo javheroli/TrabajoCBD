@@ -93,16 +93,20 @@
                   <ion-col size="4">
                     <ion-grid>
                       <ion-row>
-                        <ion-button color="success" (click)="applyFilters()">
+                        <ion-col>
+                        <ion-button color="success" (click)="applyFilters()" style="width:100%">
                                 {{ "FILTER.APPLY" | translate }}
                           <ion-icon slot="end" name="color-filter"></ion-icon>
                         </ion-button>
+                      </ion-col>
                       </ion-row>
                       <ion-row>
-                            <ion-button color="danger" (click)="removeFilters()">
+                        <ion-col>
+                            <ion-button color="danger" (click)="removeFilters()" style="width:100%">
                                     {{ "FILTER.REMOVE" | translate }}
                               <ion-icon slot="end" name="remove-circle"></ion-icon>
                             </ion-button>
+                          </ion-col>
                           </ion-row>
                     </ion-grid>
                   </ion-col>
