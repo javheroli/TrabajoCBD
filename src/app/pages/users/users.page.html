@@ -138,20 +138,44 @@
               <ion-avatar slot="start">
                 <img src="{{ user.image }}" class="user-avatar" />
               </ion-avatar>
-
+              
+              
               <ion-label>
-                <ion-text color="dark">
-                  <h2>
-                    <span
-                      ><strong>{{ user.firstName }} {{ user.lastName }}</strong>
-                      <span class="username">
-                        (<em>{{ user.username }}</em
-                        >)</span
-                      ></span
-                    >
-                  </h2>
-                </ion-text>
-              </ion-label>
+                  <ion-text color="dark">
+                    <h2>
+                      <span
+                        ><strong>{{ user.firstName }} {{ user.lastName }}</strong>
+                        <span class="username">
+                          (<em>{{ user.username }}</em
+                          >)</span
+                        ></span
+                      >
+                    </h2>
+                    <h4> {{user.course}} {{ "USERS.INFO" | translate }} 
+                    <span *ngIf="user.degree=='IS'; else templateIC">
+                        {{ "REGISTER.IS" | translate }}
+                    </span>
+                    <ng-template #templateIC>
+                        <span *ngIf="user.degree=='IC'; else templateTI">
+                            {{ "REGISTER.IC" | translate }}
+                        </span>
+                    </ng-template>
+                    <ng-template #templateTI>
+                        <span *ngIf="user.degree=='TI'; else templateS">
+                            {{ "REGISTER.TI" | translate }}
+                        </span>
+                    </ng-template>
+                    <ng-template #templateS>
+                      <span>
+                        {{ "REGISTER.S" | translate }}
+                        </span>
+                    </ng-template>
+                    </h4>
+
+                  </ion-text>
+                </ion-label>
+                
+             
             </ion-item>
           </div>
         </ion-card-content>

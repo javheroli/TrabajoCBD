@@ -32,7 +32,8 @@
     "PROFILE": "Profile"
   },
   "USERS": {
-    "USERS": "Users"
+    "USERS": "Users",
+    "INFO": "course of"
   },
   "REGISTER": {
     "CONFIRM_PASSWORD": "Confirm password",
