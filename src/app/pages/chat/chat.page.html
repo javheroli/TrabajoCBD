@@ -40,8 +40,8 @@
   </ion-list>
 </ion-content>
 
-<ion-footer (keypress)="keypress($event)">
-  <ion-toolbar *ngIf="!edit">
+<ion-footer>
+  <ion-toolbar *ngIf="!edit" (keypress)="keypress($event)">
     <div id="footer">
       <div class="elem">
         <ion-input placeholder="{{ 'CHAT.TYPE_A_MESSAGE' | translate}}" type="text" [(ngModel)]="message"></ion-input>
@@ -53,7 +53,7 @@
       </div>
     </div>
   </ion-toolbar>
-  <ion-toolbar *ngIf="edit">
+  <ion-toolbar *ngIf="edit" (keypress)="keypress2($event)">
     <div id="footer">
       <div class="elem">
         <ion-input type="text" [(ngModel)]="editMessage.message"></ion-input>

@@ -8,7 +8,7 @@
         <div style="position:absolute; top:12px;">
           <ion-title color="light">{{ "USERS.USERS" | translate }}</ion-title>
         </div>
-        <ion-item style="width:350px; float: right;">
+        <ion-item style="width:250px; float: right;">
           <ion-icon name="md-globe" slot="start" color="light"></ion-icon>
           <ion-label color="light">{{
             "SETTINGS.APP_LANGUAGE" | translate
@@ -26,96 +26,61 @@
 <ion-content>
   <ion-card class="bg-white">
     <ion-card-header color="dark">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="4">
-            <ion-searchbar
-              [(ngModel)]="keyword"
-              (ngModelChange)="searchUsers()"
-              color="primary"
-              debounce="1500"
-              placeholder="Search users"
-            >
-            </ion-searchbar>
-          </ion-col>
-          <ion-col size="8">
-            <ion-card color="primary">
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="4">
-                    <ion-item class="filter">
-                      <ion-grid>
-                        <ion-row>
-                          <ion-label>
-                            <ion-icon name="school" item-start></ion-icon>
-                            {{ "FILTER.DEGREE" | translate }}
-                          </ion-label>
-                        </ion-row>
-                        <ion-row>
-                          <ion-select [(ngModel)]="degreeFilter">
-                            <ion-select-option value="IS">{{
+
+      <ion-searchbar [(ngModel)]="keyword" (ngModelChange)="searchUsers()" color="primary" debounce="1500"
+        placeholder="Search users">
+      </ion-searchbar>
+
+      <ion-card color="primary">
+
+        <ion-item class="filter">
+          <ion-label>
+            <ion-icon name="school" item-start></ion-icon>
+            {{ "FILTER.DEGREE" | translate }}
+          </ion-label>
+
+          <ion-select [(ngModel)]="degreeFilter">
+            <ion-select-option value="IS">{{
                               "REGISTER.IS" | translate
                             }}</ion-select-option>
-                            <ion-select-option value="IC">{{
+            <ion-select-option value="IC">{{
                               "REGISTER.IC" | translate
                             }}</ion-select-option>
-                            <ion-select-option value="TI">{{
+            <ion-select-option value="TI">{{
                               "REGISTER.TI" | translate
                             }}</ion-select-option>
-                            <ion-select-option value="S">{{
+            <ion-select-option value="S">{{
                               "REGISTER.S" | translate
                             }}</ion-select-option>
-                          </ion-select>
-                        </ion-row>
-                      </ion-grid>
-                    </ion-item>
-                  </ion-col>
-                  <ion-col size="4">
-                    <ion-item class="filter">
-                      <ion-grid>
-                        <ion-row>
-                          <ion-label>
-                            <ion-icon name="trending-up" item-start></ion-icon>
-                            {{ "FILTER.COURSE" | translate }}
-                          </ion-label>
-                        </ion-row>
-                        <ion-row>
-                          <ion-select [(ngModel)]="courseFilter">
-                            <ion-select-option value="1º">1º</ion-select-option>
-                            <ion-select-option value="2º">2º</ion-select-option>
-                            <ion-select-option value="3º">3º</ion-select-option>
-                            <ion-select-option value="4º">4º</ion-select-option>
-                          </ion-select>
-                        </ion-row>
-                      </ion-grid>
-                    </ion-item>
-                  </ion-col>
-                  <ion-col size="4">
-                    <ion-grid>
-                      <ion-row>
-                        <ion-col>
-                        <ion-button color="success" (click)="applyFilters()" style="width:100%">
-                                {{ "FILTER.APPLY" | translate }}
-                          <ion-icon slot="end" name="color-filter"></ion-icon>
-                        </ion-button>
-                      </ion-col>
-                      </ion-row>
-                      <ion-row>
-                        <ion-col>
-                            <ion-button color="danger" (click)="removeFilters()" style="width:100%">
-                                    {{ "FILTER.REMOVE" | translate }}
-                              <ion-icon slot="end" name="remove-circle"></ion-icon>
-                            </ion-button>
-                          </ion-col>
-                          </ion-row>
-                    </ion-grid>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+          </ion-select>
+        </ion-item>
+
+
+        <ion-item class="filter">
+          <ion-label>
+            <ion-icon name="trending-up" item-start></ion-icon>
+            {{ "FILTER.COURSE" | translate }}
+          </ion-label>
+
+          <ion-select [(ngModel)]="courseFilter">
+            <ion-select-option value="1º">1º</ion-select-option>
+            <ion-select-option value="2º">2º</ion-select-option>
+            <ion-select-option value="3º">3º</ion-select-option>
+            <ion-select-option value="4º">4º</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button color="success" (click)="applyFilters()" style="width:100%">
+          {{ "FILTER.APPLY" | translate }}
+          <ion-icon slot="end" name="color-filter"></ion-icon>
+        </ion-button>
+
+        <ion-button color="danger" (click)="removeFilters()" style="width:100%">
+          {{ "FILTER.REMOVE" | translate }}
+          <ion-icon slot="end" name="remove-circle"></ion-icon>
+        </ion-button>
+
+      </ion-card>
     </ion-card-header>
 
     <ion-card-content no-margin no-padding>
@@ -124,12 +89,7 @@
           <div class="listFriends" *ngFor="let user of users">
             <ion-item class="bg-primary" no-margin>
               <ion-buttons slot="end">
-                <ion-button
-                  shape="round"
-                  color="dark"
-                  slot="end"
-                  (click)="chat(user.username)"
-                >
+                <ion-button shape="round" color="dark" slot="end" (click)="chat(user.username)">
                   <ion-icon name="send" class="larger" item-right></ion-icon>
                 </ion-button>
                 <br />
@@ -138,44 +98,40 @@
               <ion-avatar slot="start">
                 <img src="{{ user.image }}" class="user-avatar" />
               </ion-avatar>
-              
-              
+
+
               <ion-label>
-                  <ion-text color="dark">
-                    <h2>
-                      <span
-                        ><strong>{{ user.firstName }} {{ user.lastName }}</strong>
-                        <span class="username">
-                          (<em>{{ user.username }}</em
-                          >)</span
-                        ></span
-                      >
-                    </h2>
-                    <h4> {{user.course}} {{ "USERS.INFO" | translate }} 
+                <ion-text color="dark">
+                  <h2>
+                    <span><strong>{{ user.firstName }} {{ user.lastName }}</strong>
+                      <span class="username">
+                        (<em>{{ user.username }}</em>)</span></span>
+                  </h2>
+                  <h4> {{user.course}} {{ "USERS.INFO" | translate }}
                     <span *ngIf="user.degree=='IS'; else templateIC">
-                        {{ "REGISTER.IS" | translate }}
+                      {{ "REGISTER.IS" | translate }}
                     </span>
                     <ng-template #templateIC>
-                        <span *ngIf="user.degree=='IC'; else templateTI">
-                            {{ "REGISTER.IC" | translate }}
-                        </span>
+                      <span *ngIf="user.degree=='IC'; else templateTI">
+                        {{ "REGISTER.IC" | translate }}
+                      </span>
                     </ng-template>
                     <ng-template #templateTI>
-                        <span *ngIf="user.degree=='TI'; else templateS">
-                            {{ "REGISTER.TI" | translate }}
-                        </span>
+                      <span *ngIf="user.degree=='TI'; else templateS">
+                        {{ "REGISTER.TI" | translate }}
+                      </span>
                     </ng-template>
                     <ng-template #templateS>
                       <span>
                         {{ "REGISTER.S" | translate }}
-                        </span>
+                      </span>
                     </ng-template>
-                    </h4>
+                  </h4>
 
-                  </ion-text>
-                </ion-label>
-                
-             
+                </ion-text>
+              </ion-label>
+
+
             </ion-item>
           </div>
         </ion-card-content>

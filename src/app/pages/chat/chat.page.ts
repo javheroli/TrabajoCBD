@@ -76,6 +76,12 @@ export class ChatPage implements OnInit {
     }
   }
 
+  keypress2($event) {
+    if ($event.keyCode == 13) {
+      this.editMessages();
+    }
+  }
+
   onKeydown(event) {
     if (event.key === 'Enter') {
       console.log(event);
