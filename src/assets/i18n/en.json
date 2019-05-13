@@ -1,0 +1,78 @@
+{
+  "CHAT": {
+    "ME": "Me",
+    "TYPE_A_MESSAGE": "Write a message...",
+    "OK": "Ok",
+    "CANCEL": "Cancel",
+    "DELETE_CONFIRMATION_HEADER": "Confirm delete",
+    "DELETE_CONFIRMATION_MESSAGE": "Are you sure of deleting this message?",
+    "EDIT_CONFIRMATION_HEADER": "Confirm edit",
+    "EDIT_CONFIRMATION_MESSAGE": "Are you sure of editing this message?",
+    "ACTIONS": "Actions",
+    "DELETE": "Delete",
+    "EDIT": "Edit"
+  },
+  "CONFIG": "Config",
+  "LOGIN": {
+    "FAIL": "The credentials introduced were not found in the system. Please try again.",
+    "NEW_HERE": "New here?",
+    "PASSWORD": "Password",
+    "REQUIRED_FIELD": "Required field",
+    "SIGNIN": "Sign in",
+    "SIGN_UP": "Sign up",
+    "USERNAME": "Username",
+    "WAIT": "Please wait...",
+    "CHAT": "CBD Chat"
+  },
+  "MENU": {
+    "APP_SETTINGS": "App settings",
+    "USERS": "Users",
+    "LOGOUT": "Logout",
+    "MENU": "Menu",
+    "PROFILE": "Profile"
+  },
+  "USERS": {
+    "USERS": "Users",
+    "INFO": "course of"
+  },
+  "REGISTER": {
+    "CONFIRM_PASSWORD": "Confirm password",
+    "PROFILE_PIC": "Profile picture",
+    "ERROR_USERNAME": "The username is already taken",
+    "FIRST_NAME": "First name",
+    "HEADER_SUCCESS": "Success",
+    "HEADER_SUCCESS_EDIT": "Edit profile success",
+    "IMAGE_ERROR": "You have to select an image",
+    "INTRUDUCE_INFORMATION": "Introduce your personal data",
+    "I_HAVE_AN_ACCOUNT": "I have an account!",
+    "LAST_NAME": "Last name",
+    "PASSWORD": "Password",
+    "PASSWORD_VALIDATION_FALSE": "Passwords do not match!",
+    "REGISTER": "Register",
+    "REQUIRED_FIELD": "Required field",
+    "SIGN_UP": "Sign up",
+    "SUCCESS": "Sign up done successfully!",
+    "THIS_FIELD_IS_REQUIRED": "This field is required",
+    "USERNAME": "Username",
+    "DEGREE": "Degree",
+    "COURSE": "Course",
+    "IS": "Software Engineering",
+    "IC": "Computer Engineering",
+    "TI": "Computer Technologies",
+    "S": "Health Engineering"
+  },
+  "SETTINGS": {
+    "APP_LANGUAGE": "App language",
+    "APP_SETTINGS": "App settings",
+    "GENERAL": "General",
+    "LOGOUT": "Logout",
+    "PROFILE": "Profile"
+  },
+  
+  "FILTER": {
+    "DEGREE":"Filter by degree:",
+    "COURSE":"Filter by course:",
+    "REMOVE": "Remove",
+    "APPLY": "Apply"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "CHAT": {
+    "ME": "Yo",
+    "TYPE_A_MESSAGE": "Escribe un mensaje...",
+    "OK": "Vale",
+    "CANCEL": "Cancelar",
+    "DELETE_CONFIRMATION_HEADER": "Confirmar borrado",
+    "DELETE_CONFIRMATION_MESSAGE": "¿Está seguro de borrar este mensaje?",
+    "EDIT_CONFIRMATION_HEADER": "Confirmar editar",
+    "EDIT_CONFIRMATION_MESSAGE": "¿Está seguro de editar este mensaje?",
+    "ACTIONS": "Acciones",
+    "DELETE": "Borrar",
+    "EDIT": "Editar"
+  },
+  "CONFIG": "Configuración",
+  "LOGIN": {
+    "FAIL": "Las credenciales introducidas no fueron correctas. Por favor, intentelo de nuevo.",
+    "NEW_HERE": "¿Nuevo aquí?",
+    "PASSWORD": "Contraseña",
+    "REQUIRED_FIELD": "Campo obligatorio",
+    "SIGNIN": "Inicia sesión",
+    "SIGN_UP": "Regístrese",
+    "USERNAME": "Usuario",
+    "WAIT": "Por favor, espere...",
+    "CHAT": "CBD Chat"
+  },
+  "MENU": {
+    "APP_SETTINGS": "Ajustes",
+    "USERS": "Usuarios",
+    "LOGOUT": "Cerrar sesión",
+    "MENU": "Menú",
+    "PROFILE": "Perfil"
+  },
+  "USERS": {
+    "USERS": "Usuarios",
+    "INFO": "curso de"
+  },
+  "REGISTER": {
+    "CONFIRM_PASSWORD": "Confirmar contraseña",
+    "PROFILE_PIC": "Imagen de perfil",
+    "ERROR_USERNAME": "El nombre de usuario ya está cogido",
+    "FIRST_NAME": "Nombre",
+    "HEADER_SUCCESS": "Éxito",
+    "INTRUDUCE_INFORMATION": "Introduce tus datos personales",
+    "I_HAVE_AN_ACCOUNT": "¡Ya tengo una cuenta!",
+    "LAST_NAME": "Apellidos",
+    "PASSWORD": "Contraseña",
+    "PASSWORD_VALIDATION_FALSE": "¡Las contraseñas no coinciden!",
+    "REGISTER": "Registro",
+    "REQUIRED_FIELD": "Campo obligatorio",
+    "SIGN_UP": "Registro",
+    "SUCCESS": "¡Registro realizado correctamente!",
+    "THIS_FIELD_IS_REQUIRED": "Este campo es obligatorio",
+    "USERNAME": "Usuario",
+    "DEGREE": "Grado",
+    "COURSE": "Curso",
+    "IS": "Ingeniería del Software",
+    "IC": "Ingeniería de Computadores",
+    "TI": "Tecnologías Informáticas",
+    "S": "Ingeniería de la Salud"
+  },
+  "SETTINGS": {
+    "APP_LANGUAGE": "Idioma",
+    "APP_SETTINGS": "Ajustes",
+    "GENERAL": "General",
+    "LOGOUT": "Cerrar sesión",
+    "PROFILE": "Perfil"
+  },
+
+  "FILTER": {
+    "DEGREE":"Filtrar por grado:",
+    "COURSE":"Filtrar por curso:",
+    "REMOVE": "Quitar",
+    "APPLY": "Aplicar"
+  }
+}

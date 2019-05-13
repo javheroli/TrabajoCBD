@@ -12,6 +12,7 @@ log.txt
 .vscode/
 npm-debug.log*
 
+
 .idea/
 .ionic/
 .sourcemaps/
@@ -19,6 +20,7 @@ npm-debug.log*
 .tmp/
 .versions/
 coverage/
+server/.env
 www/
 node_modules/
 tmp/
@@ -32,3 +34,7 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+package-lock\.json
+
+package\.json
