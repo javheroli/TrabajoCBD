@@ -33,7 +33,7 @@
   },
   "USERS": {
     "USERS": "Usuarios",
-    "INFO": "curso de"
+    "INFO": "de"
   },
   "REGISTER": {
     "CONFIRM_PASSWORD": "Confirmar contraseña",
@@ -68,8 +68,8 @@
   },
 
   "FILTER": {
-    "DEGREE":"Filtrar por grado:",
-    "COURSE":"Filtrar por curso:",
+    "DEGREE": "Filtrar por grado:",
+    "COURSE": "Filtrar por curso:",
     "REMOVE": "Quitar",
     "APPLY": "Aplicar"
   }
